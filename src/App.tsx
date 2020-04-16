@@ -64,14 +64,14 @@ function App() {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const response = await axios.get(`${api.url}/posts`, {
+        const response: Result = await axios.get(`${api.url}/posts`, {
           params: {
             api_key: api.api_key,
             offset: counter === posts?.length ? counter : 0,
             limit: 15,
           },
         })
-        const { data } = response as Result
+        const { data } = response
         setPosts(data.response.posts)
       } catch (error) {
         console.log(error)
@@ -84,7 +84,7 @@ function App() {
   return (
     <>
       {post && (
-        <Wrapper>
+        <Wrapper data-testid="app">
           <PanelLeft>
             <Image mediaId={post.mediaId} />
           </PanelLeft>
